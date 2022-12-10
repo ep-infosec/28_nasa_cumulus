@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "max-len": "off",
+    "operator-linebreak": [2, "after"]
+  },
+  "env": {
+    "jest": true,
+    "jasmine": true
+  }
+}

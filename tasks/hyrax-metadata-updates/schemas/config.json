@@ -1,0 +1,72 @@
+{
+  "title": "HyraxMetadataUpdatesConfig",
+  "description": "Describes the config used by the hyrax-metadata-updates task",
+  "type": "object",
+  "required": [
+    "cmr"
+  ],
+  "properties": {
+    "cmr": {
+      "type": "object",
+      "description": "Credentials needed to perform CMR searches and metadata validation",
+      "required": [
+        "provider",
+        "clientId",
+        "username",
+        "passwordSecretName"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "passwordSecretName": {
+          "type": "string"
+        }
+      }
+    },
+    "launchpad": {
+      "type": "object",
+      "description": "credentials needed to get launchpad token",
+      "required": [
+        "api",
+        "passphraseSecretName",
+        "certificate"
+      ],
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "passphraseSecretName": {
+          "type": "string"
+        },
+        "certificate": {
+          "type": "string"
+        }
+      }
+    },
+    "addShortnameAndVersionIdToConceptId": {
+      "description": "Option to humanize the Hyrax URL. Humanizes when set to true.",
+      "default": false,
+      "type": "boolean"
+    },
+    "skipMetadataValidation": {
+      "description": "Option to skip metadata validation",
+      "default": false,
+      "type": "boolean"
+    },
+    "etags": {
+      "type": "object",
+      "description": "map of s3URIs to ETags"
+    },
+    "skipMetadataCheck": {
+      "type": "boolean",
+      "description": "allow granules with no metadata to pass without error"
+    }
+  }
+}

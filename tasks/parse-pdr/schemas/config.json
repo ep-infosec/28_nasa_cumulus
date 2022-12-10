@@ -1,0 +1,36 @@
+{
+  "title": "ParsePdrConfig",
+  "description": "Describes the config used by the parse-pdr task",
+  "type": "object",
+  "required": [ "stack", "provider", "bucket"],
+  "properties": {
+    "pdrFolder": {
+      "type": "string"
+    },
+    "stack": {
+      "description": "The name of the Task's CloudFormation Task, useful as a prefix",
+      "type": "string"
+    },
+    "granuleIdFilter": {
+      "description": "A regular expression that is applied against the filename of the first file of each granule contained in the PDR.  If the regular expression matches, then the granule is included in the output.  Defaults to '.', which will match all granules in the PDR.",
+      "type": "string"
+    },
+    "provider": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "globalConnectionLimit": { "type": "integer" },
+        "protocol": {
+          "type": "string",
+          "enum": ["ftp", "sftp", "http", "https", "s3"]
+        }
+      }
+    },
+    "bucket": { "type": "string" },
+    "useList": {
+      "description": "flag to tell ftp server to use 'LIST' instead of 'STAT'",
+      "default": false,
+      "type": "boolean"
+    }
+  }
+}

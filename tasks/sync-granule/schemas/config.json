@@ -1,0 +1,157 @@
+{
+  "title": "SyncGranuleConfig",
+  "description": "Describes the config used by the sync-granule task",
+  "type": "object",
+  "required": [
+    "buckets",
+    "provider",
+    "downloadBucket"
+  ],
+  "properties": {
+    "stack": {
+      "type": "string",
+      "description": "The name of the deployment stack"
+    },
+    "fileStagingDir": {
+      "description": "Directory used for staging location of files. Default is `file-staging`. Granules are further organized by stack name and collection name making the full path `file-staging/<stack name>/<collection name>`",
+      "type": "string"
+    },
+    "provider": {
+      "type": "object",
+      "required": [
+        "host",
+        "protocol"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "host": {
+          "type": "string"
+        },
+        "port": {
+          "type": "integer"
+        },
+        "globalConnectionLimit": {
+          "type": "integer"
+        },
+        "protocol": {
+          "type": "string",
+          "enum": [
+            "ftp",
+            "sftp",
+            "http",
+            "https",
+            "s3"
+          ]
+        }
+      }
+    },
+    "buckets": {
+      "type": "object",
+      "description": "aws s3 buckets used by this task",
+      "patternProperties": {
+        "\\S*": {
+          "description": "bucket configuration for the key'd bucket",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "name of the S3 bucket"
+            },
+            "type": {
+              "type": "string",
+              "description": "the type of bucket - i.e. internal, public, private, protected"
+            }
+          }
+        }
+      }
+    },
+    "downloadBucket": {
+      "type": "string",
+      "description": "AWS S3 bucket to use when downloading files"
+    },
+    "collection": {
+      "type": "object",
+      "required": [
+        "files",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "process": {
+          "type": "string"
+        },
+        "url_path": {
+          "type": "string"
+        },
+        "duplicateHandling": {
+          "type": "string"
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "regex",
+              "bucket"
+            ],
+            "properties": {
+              "regex": {
+                "type": "string"
+              },
+              "bucket": {
+                "type": "string"
+              },
+              "url_path": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "pdr": {
+      "required": [
+        "name",
+        "path"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    },
+    "duplicateHandling": {
+      "type": "string",
+      "description": "Specifies how duplicate filenames should be handled. `error` will throw an error that, if not caught, will fail the task/workflow execution. `version` will add a suffix to the existing filename to avoid a clash.",
+      "enum": [
+        "replace",
+        "version",
+        "skip",
+        "error"
+      ],
+      "default": "error"
+    },
+    "syncChecksumFiles": {
+      "type": "boolean",
+      "description": "If true, checksum files are also synced. Default: false.",
+      "default": false
+    },
+    "workflowStartTime": {
+      "type": "integer",
+      "description": "Specifies the start time for the current workflow (as a timestamp) and will be used as the createdAt time for granules output"
+    }
+  }
+}

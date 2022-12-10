@@ -1,0 +1,22 @@
+{
+  "title": "LzardsBackupInput",
+  "description": "Describes the input expected by the LzardsBackup task component. Either [dataType and version] or [collectionId] are required.",
+  "type": "object",
+  "required": ["granules"],
+  "properties": {
+    "granules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["files", "granuleId"],
+        "properties": {
+          "granuleId": { "type": "string" },
+          "collectionId": { "type": "string" },
+          "dataType": { "type": "string" },
+          "version": { "type": "string" },
+          "files": "{{files}}"
+        }
+      }
+    }
+  }
+}

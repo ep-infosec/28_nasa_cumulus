@@ -1,0 +1,83 @@
+{
+  "eventSource": "sfn",
+  "resources": {
+    "stack": "ghrc-cumulus",
+    "stage": "dev",
+    "buckets": {
+      "internal": {
+        "name": "cumulus-test-sandbox-internal",
+        "type": "internal"
+      },
+      "private": {
+        "name": "cumulus-test-sandbox-private",
+        "type": "private"
+      },
+      "protected": {
+        "name": "cumulus-test-sandbox-protected",
+        "type": "protected"
+      },
+      "public": {
+        "name": "cumulus-test-sandbox-public",
+        "type": "public"
+      }
+    },
+    "queues": {
+      "startSF": "https://sqs.us-east-1.amazonaws.com/xxxxx/ghrc-cumulus-dev-startSF"
+    },
+    "template": "s3://test-deploy/ghrc-cumulus-dev/workflow_template.json"
+  },
+  "ingest_meta": {
+    "state_machine": "arn:aws:states:us-east-1:xxxxxx:stateMachine:DiscoverGranulesGHRCCumulusdevStateMachine",
+    "state_machine_name": "DiscoverGranules",
+    "config": {
+      "next": "IngestGranule"
+    }
+  },
+  "provider": {
+    "id": "MUR",
+    "globalConnectionLimit": 10,
+    "protocol": "ftp",
+    "host": "podaac-ftp.jpl.nasa.gov"
+  },
+  "collection": {
+    "id": "MUR-JPL-L4-GLOB-v4.1",
+    "meta": {
+      "name": "MUR-JPL-L4-GLOB-v4.1",
+      "dataType": "MUR-JPL-L4-GLOB",
+      "version": "4.1",
+      "granuleId": "^.*$",
+      "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc",
+      "granuleIdExtraction": "^(.*)\\.(nc|nc\\.md5)$",
+      "files": [
+        {
+          "regex": ".*.nc$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc",
+          "bucket": "protected"
+        },
+        {
+          "regex": ".*.nc.md5$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc.md5",
+          "bucket": "public"
+        },
+        {
+          "regex": ".*.nc.xml",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc.xml",
+          "bucket": "public"
+        },
+        {
+          "regex": "^.*.nc_analysed_sst.png$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc_analysed_sst.png",
+          "bucket": "public"
+        },
+        {
+          "regex": "^.*.nc_analysis_error.png$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc_analysis_error.png",
+          "bucket": "public"
+        }
+      ]
+    }
+  },
+  "meta": {},
+  "exception": null,
+  "payload": {}
+}

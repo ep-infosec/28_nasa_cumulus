@@ -1,0 +1,44 @@
+{
+  "title": "FilesToGranulesConfig",
+  "description": "Describes the config used by the files-to-granules task",
+  "type": "object",
+  "required": [
+    "inputGranules"
+  ],
+  "properties": {
+    "inputGranules": {
+      "type": "array",
+      "description": "granules object used to construct output for cumulus indexer",
+      "items": {
+        "type": "object",
+        "required": ["granuleId", "files"],
+        "properties": {
+          "granuleId": {
+            "type": "string"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["bucket", "key"],
+              "properties": {
+                "bucket": {
+                  "description": "Bucket in-process file is being staged in in S3",
+                  "type": "string"
+                },
+                "key": {
+                  "description": "S3 Key for in-process file",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "granuleIdExtraction": {
+      "type": "string",
+      "description": "The regex needed for extracting granuleId from filenames"
+    }
+  }
+}

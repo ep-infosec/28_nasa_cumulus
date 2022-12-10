@@ -1,0 +1,31 @@
+{
+  "title": "QueueGranulesInput",
+  "description": "Describes the input and config used by the queue-granules task",
+  "type": "object",
+  "require": [ "granules" ],
+  "properties": {
+    "pdr": {
+      "type": "object",
+      "required": ["name", "path"],
+      "properties": {
+        "name": { "type": "string" },
+        "path": { "type": "string" }
+      }
+    },
+    "granules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [ "files", "granuleId", "dataType", "version" ],
+        "properties": {
+          "type": { "type": "string" },
+          "granuleId": { "type": "string" },
+          "dataType": { "type": "string" },
+          "version": { "type": "string" },
+          "provider": { "type": "string" },
+          "files": { "type": "array" }
+        }
+      }
+    }
+  }
+}

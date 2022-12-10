@@ -1,0 +1,23 @@
+{
+  "name": "@cumulus/test-s3-access",
+  "version": "13.4.0",
+  "description": "S3 Access Test Lambda",
+  "main": "index.js",
+  "private": true,
+  "engines": {
+    "node": ">=14.19.1"
+  },
+  "scripts": {
+    "test": "true",
+    "package": "rm -f lambda.zip && node ../../../bin/zip.js lambda.zip index.js node_modules",
+    "python-lint": "true"
+  },
+  "publishConfig": {
+    "access": "private"
+  },
+  "author": "Cumulus Authors",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.58.0"
+  }
+}

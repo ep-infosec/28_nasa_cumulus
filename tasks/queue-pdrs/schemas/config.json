@@ -1,0 +1,24 @@
+{
+  "title": "QueuePdrsConfig",
+  "description": "Describes the config used by the queue-pdrs task",
+  "type": "object",
+  "required": [
+    "collection",
+    "provider",
+    "queueUrl",
+    "parsePdrWorkflow",
+    "stackName",
+    "internalBucket"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "collection": { "type": "object" },
+    "provider": { "type": "object" },
+    "queueUrl": { "type": "string" },
+    "parsePdrWorkflow": { "type": "string" },
+    "internalBucket": { "type": "string" },
+    "stackName": { "type": "string" },
+    "executionNamePrefix": { "type": "string" },
+    "childWorkflowMeta": { "type": "object" }
+  }
+}

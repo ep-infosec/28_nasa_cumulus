@@ -1,0 +1,72 @@
+{
+  "name": "@cumulus/aws-client",
+  "version": "13.4.0",
+  "description": "Utilities for working with AWS",
+  "keywords": [
+    "GIBS",
+    "CUMULUS",
+    "NASA"
+  ],
+  "engines": {
+    "node": ">=14.19.1"
+  },
+  "files": [
+    "*.js",
+    "*.d.ts",
+    "lib/*.js",
+    "lib/*.d.ts"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/nasa/cumulus/tree/master/packages/aws-client/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nasa/cumulus"
+  },
+  "scripts": {
+    "build-docs": "npm run tsc && ../../node_modules/.bin/jsdoc2md -t templates/README.hbs *.js > README.md",
+    "clean": "git clean -d -x -e node_modules -f",
+    "test": "../../node_modules/.bin/ava",
+    "test:coverage": "../../node_modules/.bin/nyc npm test",
+    "prepare": "npm run tsc",
+    "tsc": "../../node_modules/.bin/tsc",
+    "tsc:listEmittedFiles": "../../node_modules/.bin/tsc --listEmittedFiles",
+    "watch-test": "../../node_modules/.bin/tsc-watch --onsuccess 'npm test'"
+  },
+  "ava": {
+    "files": [
+      "tests/**/*.js"
+    ],
+    "verbose": true
+  },
+  "author": "Cumulus Authors",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@aws-sdk/client-api-gateway": "^3.58.0",
+    "@aws-sdk/client-dynamodb": "^3.58.0",
+    "@aws-sdk/client-dynamodb-streams": "^3.58.0",
+    "@aws-sdk/client-s3": "^3.58.0",
+    "@aws-sdk/lib-dynamodb": "^3.58.0",
+    "@aws-sdk/lib-storage": "^3.58.0",
+    "@aws-sdk/s3-request-presigner": "^3.58.0",
+    "@aws-sdk/signature-v4-crt": "^3.58.0",
+    "@aws-sdk/types": "^3.58.0",
+    "@cumulus/checksum": "13.4.0",
+    "@cumulus/errors": "13.4.0",
+    "@cumulus/logger": "13.4.0",
+    "aws-sdk": "^2.585.0",
+    "jsonpath-plus": "^1.1.0",
+    "lodash": "~4.17.21",
+    "mem": "^8.0.2",
+    "p-map": "^1.2.0",
+    "p-retry": "^4.2.0",
+    "p-timeout": "^4.1.0",
+    "p-wait-for": "^3.2.0",
+    "pump": "^3.0.0",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^8.0.0"
+  }
+}

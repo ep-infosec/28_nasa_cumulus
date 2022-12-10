@@ -1,0 +1,72 @@
+{
+  "config": {
+    "provider": {
+      "id": "MUR",
+      "globalConnectionLimit": 10,
+      "protocol": "ftp",
+      "host": "podaac-ftp.jpl.nasa.gov"
+    },
+    "buckets": {
+      "internal": {
+        "name": "cumulus-test-sandbox-internal",
+        "type": "internal"
+      },
+      "private": {
+        "name": "cumulus-test-sandbox-private",
+        "type": "private"
+      },
+      "protected": {
+        "name": "cumulus-test-sandbox-protected",
+        "type": "protected"
+      },
+      "public": {
+        "name": "cumulus-test-sandbox-public",
+        "type": "public"
+      }
+    },
+    "collection": {
+      "name": "MUR-JPL-L4-GLOB-v4.1",
+      "dataType": "MUR-JPL-L4-GLOB",
+      "version": "4.1",
+      "granuleId": "^.*$",
+      "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc",
+      "granuleIdExtraction": "^(.*)\\.(nc|nc\\.md5)$",
+      "duplicateHandling": "replace",
+      "files": [
+        {
+          "regex": ".*.nc$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc",
+          "bucket": "protected",
+          "type": "data"
+        },
+        {
+          "regex": ".*.nc.md5$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc.md5",
+          "bucket": "public",
+          "type": "metadata"
+        },
+        {
+          "regex": ".*.nc.xml",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc.xml",
+          "bucket": "public",
+          "type": "metadata"
+        },
+        {
+          "regex": "^.*.nc_analysed_sst.png$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc_analysed_sst.png",
+          "bucket": "public",
+          "type": "browse"
+        },
+        {
+          "regex": "^.*.nc_analysis_error.png$",
+          "sampleFileName": "20170603090000-JPL-L4_GHRSST-SSTfnd-MUR-GLOB-v02.0-fv04.1.nc_analysis_error.png",
+          "bucket": "public",
+          "type": "browse"
+        }
+      ]
+    }
+  },
+  "input": {
+    "event": 1
+  }
+}

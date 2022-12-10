@@ -1,0 +1,69 @@
+{
+  "name": "@cumulus/ingest",
+  "version": "13.4.0",
+  "description": "Ingest utilities",
+  "engines": {
+    "node": ">=14.19.1"
+  },
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && npm run prepare",
+    "clean": "git clean -d -x -e node_modules -f",
+    "test": "../../node_modules/.bin/ava",
+    "test:coverage": "../../node_modules/.bin/nyc npm test",
+    "prepare": "npm run tsc",
+    "tsc": "../../node_modules/.bin/tsc",
+    "tsc:listEmittedFiles": "../../node_modules/.bin/tsc --listEmittedFiles",
+    "watch-test": "../../node_modules/.bin/tsc-watch --onsuccess 'npm test'"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "ava": {
+    "files": [
+      "!test/fixtures/**/*"
+    ],
+    "timeout": "15m"
+  },
+  "keywords": [
+    "GIBS",
+    "CUMULUS",
+    "NASA"
+  ],
+  "homepage": "https://github.com/nasa/cumulus/tree/master/packages/ingest#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nasa/cumulus",
+    "directory": "packages/ingest"
+  },
+  "author": "Cumulus Authors",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@cumulus/aws-client": "13.4.0",
+    "@cumulus/common": "13.4.0",
+    "@cumulus/db": "13.4.0",
+    "@cumulus/errors": "13.4.0",
+    "@cumulus/logger": "13.4.0",
+    "@cumulus/message": "13.4.0",
+    "@cumulus/sftp-client": "13.4.0",
+    "aws-sdk": "^2.585.0",
+    "cksum": "^1.3.0",
+    "delay": "^4.3.0",
+    "encodeurl": "^1.0.2",
+    "fs-extra": "^5.0.0",
+    "got": "^11.8.5",
+    "is-ip": "^2.0.0",
+    "is-valid-hostname": "^0.1.1",
+    "jsftp": "https://github.com/jkovarik/jsftp.git#add_288",
+    "lodash": "^4.17.21",
+    "mime-types": "^2.1.22",
+    "moment": "2.29.4",
+    "simplecrawler": "^1.1.9",
+    "tough-cookie": "~4.0.0"
+  },
+  "devDependencies": {
+    "@cumulus/checksum": "13.4.0",
+    "@cumulus/cmrjs": "13.4.0",
+    "@cumulus/test-data": "13.4.0",
+    "@cumulus/types": "13.4.0"
+  }
+}

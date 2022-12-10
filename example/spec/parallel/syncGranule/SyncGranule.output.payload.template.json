@@ -1,0 +1,25 @@
+{
+  "process": "modis",
+  "granules": [
+    {
+      "granuleId": "replace-me-granuleId",
+      "dataType": "MOD09GQ",
+      "version": "006",
+      "files": [
+        {
+          "fileName": "replace-me-granuleId.hdf",
+          "bucket": "",
+          "size": 1098034,
+          "type": "data"
+        },
+        {
+          "fileName": "replace-me-granuleId.hdf.met",
+          "bucket": "",
+          "size": 21708,
+          "type": "metadata"
+        }
+      ]
+    }
+  ]
+}
+

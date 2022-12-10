@@ -1,0 +1,100 @@
+{
+  "title": "DiscoverGranulesConfig",
+  "description": "Describes the config used by the discover-granules task",
+  "type": "object",
+  "required": [
+    "provider",
+    "provider_path"
+  ],
+  "properties": {
+    "provider": {
+      "type": "object",
+      "required": [ "host", "protocol" ],
+      "properties": {
+        "id": { "type": "string" },
+        "username": { "type": "string" },
+        "password": { "type": "string" },
+        "host": { "type": "string" },
+        "port": { "type": "integer" },
+        "globalConnectionLimit": { "type": "integer" },
+        "protocol": {
+          "type": "string",
+          "enum": ["ftp", "sftp", "http", "https", "s3"]
+        }
+      }
+    },
+    "provider_path": { "type": "string" },
+    "buckets": {
+      "type": "object",
+      "description": "aws s3 buckets used by this task",
+      "patternProperties": {
+        "\\S*": {
+          "description": "bucket configuration for the key'd bucket",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "name of the S3 bucket"
+            },
+            "type": {
+              "type": "string",
+              "description": "the type of bucket - i.e. internal, public, private, protected"
+            }
+          }
+        }
+      }
+    },
+    "collection": {
+      "type": "object",
+      "required": ["name", "version", "files"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" },
+        "url_path": { "type": "string" },
+        "granuleId": { "type": "string" },
+        "sampleFileName": { "type": "string" },
+        "granuleIdExtraction": { "type": "string" },
+        "ignoreFilesConfigForDiscovery": {
+          "type": "boolean",
+          "description": "When true, ignore this collection's files config list for determining which files to ingest for a granule, and ingest them all.  Otherwise, ingest only files that match a regex in one of this collection's files config list.  When this property is specified on a task, it overrides the value set on the collection.",
+          "default": false
+        },
+        "files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "regex": { "type": "string" },
+              "sampleFileName": { "type": "string" },
+              "bucket": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "ignoreFilesConfigForDiscovery": {
+      "description": "Overrides this property for all collections.  See same property name at collection level.",
+      "type": "boolean"
+    },
+    "useList": {
+      "description": "flag to tell ftp server to use 'LIST' instead of 'STAT'",
+      "default": false,
+      "type": "boolean"
+    },
+    "httpListTimeout": {
+      "description": "Timeout (in seconds) for retrieval by HTTP/HTTPS provider",
+      "default": 300,
+      "type": "integer"
+    },
+    "duplicateGranuleHandling": {
+      "description": "flag to set DiscoverGranules duplicate handling behavior",
+      "default": "replace",
+      "type": "string"
+    },
+    "concurrency": {
+      "description": "concurrency used when querying Cumulus API for already discovered granules",
+      "default": 3,
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "title": "PostToCmrConfig",
+  "description": "Describes the config used by the post-to-cmr task",
+  "type": "object",
+  "required": [
+    "bucket",
+    "stack",
+    "cmr"
+  ],
+  "properties": {
+    "bucket": {
+      "type": "string",
+      "description": "the bucket the has the private/public key needed for decrypting cmr password"
+    },
+    "stack": {
+      "type": "string",
+      "description": "The name of the deployment stack"
+    },
+    "cmr": {
+      "type": "object",
+      "description": "credentials needed to post metadata to CMR",
+      "required": [
+        "oauthProvider",
+        "provider",
+        "clientId",
+        "username",
+        "passwordSecretName"
+      ],
+      "properties": {
+        "oauthProvider": {
+          "type": "string"
+        },
+        "provider": {
+          "type": "string"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
+        },
+        "passwordSecretName": {
+          "type": "string"
+        }
+      }
+    },
+    "launchpad": {
+      "type": "object",
+      "description": "credentials needed to get launchpad token",
+      "required": [
+        "api",
+        "passphraseSecretName",
+        "certificate"
+      ],
+      "properties": {
+        "api": {
+          "type": "string"
+        },
+        "passphraseSecretName": {
+          "type": "string"
+        },
+        "certificate": {
+          "type": "string"
+        }
+      }
+    },
+    "skipMetaCheck": {
+      "description": "Adds the option to allow PostToCMR to pass when processing a granule without a metadata file.",
+      "default": false,
+      "type": "boolean"
+    },
+    "etags": {
+      "type": "object",
+      "description": "map of s3URIs to ETags"
+    }
+  }
+}

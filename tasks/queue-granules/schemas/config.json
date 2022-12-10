@@ -1,0 +1,24 @@
+{
+  "title": "QueueGranulesConfig",
+  "description": "Describes the config used by the queue-granules task",
+  "type": "object",
+  "required": [
+    "provider",
+    "queueUrl",
+    "granuleIngestWorkflow",
+    "stackName",
+    "internalBucket"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "granuleIngestWorkflow": { "type": "string" },
+    "internalBucket": { "type": "string" },
+    "provider": { "type": "object" },
+    "preferredQueueBatchSize": { "type": ["number", "null"] },
+    "queueUrl": { "type": "string" },
+    "stackName": { "type": "string" },
+    "concurrency": { "type": "number" },
+    "executionNamePrefix": { "type": "string" },
+    "childWorkflowMeta": { "type": "object" }
+  }
+}

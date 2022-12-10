@@ -1,0 +1,75 @@
+{
+  "eventSource": "sfn",
+  "resources": {
+    "stack": "ghrc-cumulus",
+    "stage": "dev",
+    "buckets": {
+      "internal": {
+        "name": "cumulus-test-sandbox-internal",
+        "type": "internal"
+      },
+      "private": {
+        "name": "cumulus-test-sandbox-private",
+        "type": "private"
+      },
+      "protected": {
+        "name": "cumulus-test-sandbox-protected",
+        "type": "protected"
+      },
+      "public": {
+        "name": "cumulus-test-sandbox-public",
+        "type": "public"
+      }
+    },
+    "queues": {
+      "startSF": "https://sqs.us-east-1.amazonaws.com/xxxxx/ghrc-cumulus-dev-startSF"
+    },
+    "template": "s3://test-deploy/ghrc-cumulus-dev/workflow_template.json"
+  },
+  "ingest_meta": {
+    "state_machine": "arn:aws:states:us-east-1:xxxxxx:stateMachine:DiscoverGranulesGHRCCumulusdevStateMachine",
+    "state_machine_name": "DiscoverGranules",
+    "config": {
+      "next": "IngestGranule"
+    }
+  },
+  "provider": {
+    "id": "JAXA",
+    "globalConnectionLimit": 10,
+    "protocol": "sftp",
+    "host": "fixme.jaxa.jp",
+    "port": 0,
+    "username": "username",
+    "password": "password"
+  },
+  "collection": {
+    "id": "AMSR2",
+    "meta": {
+      "name": "AMSR2",
+      "version": "1",
+      "granuleId": "^GW1AM2_[\\d]{12}_[\\d]{3}B_L1S[N|G]RTBR_[\\d]{7}$",
+      "sampleFileName": "GW1AM2_201708071110_057B_L1SNRTBR_2220220.h5.gz",
+      "granuleIdExtraction": "^(GW1AM2_(.*))\\.h5\\.gz$",
+      "files": [
+        {
+          "regex": "^GW1AM2_[\\d]{12}_[\\d]{3}B_L1S[N|G]RTBR_[\\d]{7}\\.h5\\.gz$",
+          "sampleFileName": "GW1AM2_201708071110_057B_L1SNRTBR_2220220.h5.gz",
+          "bucket": "private"
+        },
+        {
+          "regex": "^GW1AM2_[\\d]{12}_[\\d]{3}A_L1S[N|G]RTBR_[\\d]{7}\\.h5$",
+          "sampleFileName": "GW1AM2_201708031402_077A_L1SNRTBR_2220220.h5",
+          "bucket": "private"
+        },
+        {
+          "regex": "^GW1AM2_[\\d]{12}_[\\d]{3}D_L1S[N|G]RTBR_[\\d]{7}\\.h5$",
+          "sampleFileName": "GW1AM2_201708031402_077D_L1SNRTBR_2220220.h5",
+          "bucket": "private"
+        }
+      ]
+    }
+  },
+  "meta": {},
+  "exception": null,
+  "payload": {}
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@cumulus/python-process-activity",
+  "private": true,
+  "version": "13.4.0",
+  "description": "Python reference activity",
+  "homepage": "https://github.com/nasa/cumulus/tree/master/example/lambdas/python-reference-activity",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nasa/cumulus"
+  },
+  "scripts": {
+    "test": "pipenv run python -m unittest",
+    "python-lint": "pipenv run pylint *.py",
+    "lint": "npm run python-lint",
+    "clean": "rm -rf .venv",
+    "build": "pip install pipenv && PIPENV_VENV_IN_PROJECT=1 pipenv install --dev --deploy --ignore-pipfile",
+    "prepare": "npm run build",
+    "package": "true",
+    "install-python-deps": "npm run build"
+  },
+  "publishConfig": {
+    "access": "private"
+  },
+  "nyc": {
+    "exclude": [
+      "tests"
+    ]
+  },
+  "author": "Cumulus Authors",
+  "license": "Apache-2.0"
+}

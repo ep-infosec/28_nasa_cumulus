@@ -1,0 +1,43 @@
+{
+  "granuleDuplicates": {},
+  "granules": [
+    {
+      "granuleId": "replace-me-granuleId",
+      "dataType": "MOD09GQ",
+      "version": "006",
+      "published": true,
+      "cmrLink": "https://cmr.uat.earthdata.nasa.gov/search/granules.json?concept_id=G1222231611-CUMULUS",
+      "cmrConceptId": "G1222231611-CUMULUS",
+      "cmrMetadataFormat": "echo10",
+      "files": [
+        {
+          "fileName": "replace-me-granuleId.hdf",
+          "bucket": "this-should-be-replaced-with-protected-bucket-name-in-the-test",
+          "key": "MOD09GQ/2017/MOD/replace-me-granuleId.hdf",
+          "size": 1098034,
+          "type": "data"
+        },
+        {
+          "fileName": "replace-me-granuleId.hdf.met",
+          "bucket": "this-should-be-replaced-with-private-bucket-name-in-the-test",
+          "key": "MOD09GQ/MOD/replace-me-granuleId.hdf.met",
+          "size": 21708,
+          "type": "metadata"
+        },
+        {
+          "fileName": "replace-me-granuleId_ndvi.jpg",
+          "bucket": "this-should-be-replaced-with-public-bucket-name-in-the-test",
+          "key": "MOD09GQ/MOD/replace-me-granuleId_ndvi.jpg",
+          "size": 9728,
+          "type": "browse"
+        },
+        {
+          "key": "MOD09GQ/MOD/replace-me-granuleId.cmr.xml",
+          "bucket": "this-should-be-replaced-with-protected-2-bucket-name-in-the-test",
+          "fileName": "replace-me-granuleId.cmr.xml",
+          "type": "metadata"
+        }
+      ]
+    }
+  ]
+}

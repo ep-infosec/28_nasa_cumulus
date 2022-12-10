@@ -1,0 +1,95 @@
+{
+  "eventSource": "sfn",
+  "resources": {
+    "stack": "lpdaac-cumulus-phaseIII",
+    "stage": "dev",
+    "buckets": {
+      "internal": {
+        "name": "cumulus-test-sandbox-internal",
+        "type": "internal"
+      },
+      "private": {
+        "name": "cumulus-test-sandbox-private",
+        "type": "private"
+      },
+      "protected": {
+        "name": "cumulus-test-sandbox-protected",
+        "type": "protected"
+      },
+      "public": {
+        "name": "cumulus-test-sandbox-public",
+        "type": "public"
+      }
+    },
+    "queues": {
+      "startSF": "https://sqs.us-east-1.amazonaws.com/xxxxx/lpdaac-cumulus-phaseIII-dev-startSF"
+    },
+    "template": "s3://cumulus-internal/lpdaac-cumulus-phaseIII-dev/workflow_template.json"
+  },
+  "ingest_meta": {
+    "state_machine": "arn:aws:states:us-east-1:xxxxx:stateMachine:IngestGranuleLpdaacCumulusPhaseIIIdevStateMachine-XAWXXUDXOVQG",
+    "state_machine_name": "IngestGranule",
+    "execution_name": "MOD09GQ__GRANULE__MOD09GQ.A2017224.h27v08.006.2017227165029__1502835944713"
+  },
+  "provider": {
+    "id": "podaac",
+    "globalConnectionLimit": 20,
+    "protocol": "ftp",
+    "host": "podaac-ftp.jpl.nasa.gov"
+  },
+  "collection": {
+    "id": "MOD09GQ",
+    "meta": {
+      "dataType": "MOD09GQ",
+      "name": "MOD09GQ",
+      "version": "006",
+      "process": "modis",
+      "granuleId": "^MOD09GQ\\.A[\\d]{7}\\.[\\S]{6}\\.006\\.[\\d]{13}$",
+      "sampleFileName": "MOD09GQ.A2017025.h21v00.006.2017034065104.hdf",
+      "granuleIdExtraction": "(MOD09GQ\\.(.*))\\.hdf",
+      "files": [
+        {
+          "regex": "^MOD09GQ\\.A[\\d]{7}\\.[\\S]{6}\\.006\\.[\\d]{13}\\.hdf$",
+          "bucket": "protected",
+          "sampleFileName": "MOD09GQ.A2017025.h21v00.006.2017034065104.hdf"
+        },
+        {
+          "regex": "^MOD09GQ\\.A[\\d]{7}\\.[\\S]{6}\\.006\\.[\\d]{13}\\.hdf\\.met$",
+          "bucket": "private",
+          "sampleFileName": "MOD09GQ.A2017025.h21v00.006.2017034065104.hdf.met"
+        },
+        {
+          "regex": "^MOD09GQ\\.A[\\d]{7}\\.[\\S]{6}\\.006\\.[\\d]{13}\\.meta\\.xml$",
+          "bucket": "protected",
+          "sampleFileName": "MOD09GQ.A2017025.h21v00.006.2017034065104.meta.xml"
+        },
+        {
+          "regex": "^MOD09GQ\\.A[\\d]{7}\\.[\\S]{6}\\.006\\.[\\d]{13}_1\\.jpg$",
+          "bucket": "public",
+          "sampleFileName": "MOD09GQ.A2017025.h21v00.006.2017034065104_1.jpg"
+        }
+      ]
+    }
+  },
+  "meta": {},
+  "exception": null,
+  "payload": {
+    "granules": [
+      {
+        "granuleId": "20160115-MODIS_T-JPL-L2P-T2016015000000.L2_LAC_GHRSST_N-v01",
+        "files": [
+          {
+            "path": "/granules",
+            "name": "20160115-MODIS_T-JPL-L2P-T2016015000000.L2_LAC_GHRSST_N-v01.nc.bz2",
+            "size": 39953368
+          },
+          {
+            "path": "/granules",
+            "name": "20160115-MODIS_T-JPL-L2P-T2016015000000.L2_LAC_GHRSST_N-v01.nc.bz2.md5",
+            "size": 39953368
+          }
+        ]
+      }
+    ]
+  }
+}
